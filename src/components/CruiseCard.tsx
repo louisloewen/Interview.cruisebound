@@ -49,7 +49,7 @@ const CruiseCard = ({ sailing }: CruiseCardProps) => {
             src={sailing.ship.image || fallbackImageUrl}
             alt={sailing.ship.name}
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
             sizes="(max-width: 768px) 33vw, 25vw"
             unoptimized
             onError={(e) => {
