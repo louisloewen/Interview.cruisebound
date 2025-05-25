@@ -103,6 +103,13 @@ export default function Home() {
     }
   };
   
+  // Reset filters to default
+  const handleResetFilters = () => {
+    setSortBy('price');
+    setSortOrder('asc');
+    setCurrentPage(1);
+  };
+  
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -128,7 +135,10 @@ export default function Home() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <div className="flex items-center mb-4 md:mb-0">
           <h2 className="font-medium text-gray-700 mr-2">{sailings.length} trips found</h2>
-          <button className="text-sm text-gray-500 border border-gray-300 rounded px-3 py-1 hover:bg-gray-50">
+          <button 
+            className="text-sm text-gray-500 border border-gray-300 rounded px-3 py-1 hover:bg-gray-50"
+            onClick={handleResetFilters}
+          >
             Reset filters
           </button>
         </div>
@@ -142,8 +152,8 @@ export default function Home() {
               onChange={(e) => handleSortChange(e.target.value)}
             >
               <option value="price">Price (Lowest first)</option>
-              <option value="departureDate">Departure Date</option>
-              <option value="duration">Duration</option>
+              <option value="departureDate">Departure Date (Earliest first)</option>
+              <option value="duration">Duration (Shortest first)</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -163,7 +173,7 @@ export default function Home() {
       
       {/* Pagination */}
       {sailings.length > itemsPerPage && (
-        <div className="flex justify-center">
+        <div className="flex justify-start mb-8">
           <Pagination 
             itemsPerPage={itemsPerPage}
             totalItems={sailings.length}
