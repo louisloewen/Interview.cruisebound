@@ -44,15 +44,19 @@ const CruiseCard = ({ sailing }: CruiseCardProps) => {
     <div className="bg-white rounded-2xl shadow-sm overflow-visible hover:shadow-md transition-shadow mb-4">
       <div className="flex flex-row">
         {/* Left side - Image */}
-        <div className="relative w-1/3 rounded-l-lg overflow-hidden" style={{ height: '25vh', minHeight: '180px' }}>
+        <div className="relative w-1/3 rounded-l-2xl overflow-hidden" style={{ minHeight: '180px', height: 'auto' }}>
           <Image 
             src={sailing.ship.image || fallbackImageUrl}
             alt={sailing.ship.name}
             fill
             style={{ 
               objectFit: 'cover', 
-              objectPosition: 'center center',
-              transform: 'translateY(0)' 
+              objectPosition: 'center',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0
             }}
             sizes="(max-width: 768px) 33vw, 25vw"
             unoptimized
